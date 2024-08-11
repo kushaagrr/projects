@@ -23,11 +23,9 @@ public class Course {
     private byte credits;
     @Getter
     private String type;
-    // brioche
     @Getter
-    private String structure;
+    private String brochure;
 
-    @OneToMany @Getter
-    @JoinColumn(name = "subject_code")
-    private List<Subject> subjects;
+    @OneToOne(mappedBy = "course") @Getter
+    private Enrollment enrollment;
 }

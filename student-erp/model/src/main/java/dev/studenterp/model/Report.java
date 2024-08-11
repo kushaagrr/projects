@@ -6,21 +6,24 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity
-@Table(name = "education")
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity
+@Table(name = "report")
 @Setter
-public class Education {
+public class Report {
     @Id @Getter
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int eduID;
+    private int reportID;
     @Getter
-    private String recent;
+    private int marksObtained;
     @Getter
-    private String grade;
+    private int credits;
 
     @OneToOne
-    @JoinColumn(name = "rollno")
-    private Student student;
+    @JoinColumn(name = "subject_code")
+    private Subject subject;
+    @OneToOne
+    @JoinColumn(name = "enrollment_id")
+    private Enrollment enrollment;
 }

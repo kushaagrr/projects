@@ -11,18 +11,13 @@ import lombok.*;
 public class Student {
     @Id
     private int rollno;
-    private String regID;
     private String firstName;
     private String lastName;
 
-    // enrolled courses
-    @OneToOne()
-    @JoinColumn(name = "course_no")
-    private Course course;
-    // recent education
+    @OneToOne(mappedBy = "student")
+    private Enrollment enrollment;
     @OneToOne(mappedBy = "student")
     private Education education;
-    // student details
     @OneToOne(mappedBy = "student")
     private Details details;
 }

@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: repository
+  datasource:
+    username: practice
+    password: practice
+    url: jdbc:mysql://localhost:3306/studenterp
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
