@@ -21,6 +21,7 @@ public class AuthManager implements ReactiveAuthenticationManager {
 
     @Override
     public Mono<Authentication> authenticate(Authentication authentication) {
+        System.out.println("AUTHENTICATION CREDS "+authentication.getCredentials());
         if(authentication.getCredentials() != null){
             String jwt = authentication.getCredentials().toString();
             String username = jwtService.extractUsername(jwt);

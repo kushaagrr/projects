@@ -1,11 +1,11 @@
 package dev.studenterp.authservice.controller;
 
+import dev.studenterp.authservice.dto.request.AuthRequest;
 import dev.studenterp.authservice.dto.request.UserRequest;
 import dev.studenterp.authservice.dto.response.AuthResponse;
-import dev.studenterp.authservice.service.UserService;
+import dev.studenterp.authservice.service.UserAuthService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
@@ -13,12 +13,16 @@ import reactor.core.publisher.Mono;
 @RequiredArgsConstructor
 @RequestMapping("/auth")
 public class AuthController {
-    private final UserService userService;
-
+    private final UserAuthService userService;
 
     @PostMapping("/login")
-    public Mono<String> login() {
-        return Mono.just("hello at login route");
+    public Mono<ResponseEntity<AuthResponse>> login(@RequestBody AuthRequest authRequest) {
+        return userService
+                .signin(authRequest)
+                .map(token -> {
+                    System.out.println(token);
+                    return ResponseEntity.ok(new AuthResponse(token));
+                });
     }
 
     @PostMapping("/signup")
