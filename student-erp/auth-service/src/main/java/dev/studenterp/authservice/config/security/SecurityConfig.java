@@ -23,8 +23,8 @@ public class SecurityConfig {
         http.csrf(ServerHttpSecurity.CsrfSpec::disable);
         http.authorizeExchange(exchange ->
                 exchange
-                        .pathMatchers("/auth/**").permitAll()
-                        .pathMatchers("/portal/student/**").hasRole(ROLE.STUDENT.name())
+                        .pathMatchers("/api/v1/auth/**").permitAll()
+                        .pathMatchers("/api/v1/portal/student/**").hasRole(ROLE.STUDENT.name())
                         .anyExchange().authenticated());
         http.addFilterAt(jwtAuthenticationFilter, SecurityWebFiltersOrder.AUTHENTICATION);
         return http.build();

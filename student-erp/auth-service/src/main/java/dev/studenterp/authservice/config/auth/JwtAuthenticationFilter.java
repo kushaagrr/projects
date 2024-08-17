@@ -1,6 +1,5 @@
 package dev.studenterp.authservice.config.auth;
 
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.ReactiveAuthenticationManager;

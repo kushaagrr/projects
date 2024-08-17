@@ -11,7 +11,7 @@ import reactor.core.publisher.Mono;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/auth")
+@RequestMapping("api/v1/auth")
 public class AuthController {
     private final UserAuthService userService;
 
@@ -19,10 +19,7 @@ public class AuthController {
     public Mono<ResponseEntity<AuthResponse>> login(@RequestBody AuthRequest authRequest) {
         return userService
                 .signin(authRequest)
-                .map(token -> {
-                    System.out.println(token);
-                    return ResponseEntity.ok(new AuthResponse(token));
-                });
+                .map(token -> ResponseEntity.ok(new AuthResponse(token)));
     }
 
     @PostMapping("/signup")

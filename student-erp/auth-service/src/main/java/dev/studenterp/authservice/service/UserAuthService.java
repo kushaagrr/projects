@@ -1,6 +1,5 @@
 package dev.studenterp.authservice.service;
 
-import dev.studenterp.authservice.config.auth.AuthManager;
 import dev.studenterp.authservice.dto.request.AuthRequest;
 import dev.studenterp.authservice.dto.request.UserRequest;
 import dev.studenterp.authservice.repository.UserRepository;
@@ -17,7 +16,6 @@ public class UserAuthService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
-    private final AuthManager authManager;
 
     public Mono<String> signup(UserRequest userRequest) {
         dev.studenterp.authservice.entity.User u =

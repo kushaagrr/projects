@@ -3,14 +3,11 @@ package dev.studenterp.authservice.config.auth;
 import dev.studenterp.authservice.service.UserService;
 import dev.studenterp.authservice.service.jwt.JwtService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.ReactiveAuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
 
 @Configuration
@@ -21,7 +18,7 @@ public class AuthManager implements ReactiveAuthenticationManager {
 
     @Override
     public Mono<Authentication> authenticate(Authentication authentication) {
-        System.out.println("AUTHENTICATION CREDS "+authentication.getCredentials());
+
         if(authentication.getCredentials() != null){
             String jwt = authentication.getCredentials().toString();
             String username = jwtService.extractUsername(jwt);
